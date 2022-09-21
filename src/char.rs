@@ -1,11 +1,13 @@
-pub fn char(c: char) -> impl Fn(&str) -> Option<((), &str)> {
-  move |s| {
-    if s.chars().next() == Some(c) {
-      Some(((), &s[1..]))
-    } else {
-      None
-    }
-  }
+use crate::helper::{parser_closure, Parser};
+
+pub fn char(c: char) -> impl Parser<()> {
+    parser_closure(move |s| {
+        if s.chars().next() == Some(c) {
+            Some(((), &s[1..]))
+        } else {
+            None
+        }
+    })
 }
 
 #[cfg(test)]

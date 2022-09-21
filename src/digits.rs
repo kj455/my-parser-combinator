@@ -1,5 +1,5 @@
 pub fn digits(s: &str) -> Option<(u64, &str)> {
-  let end = s.find(|c: char| !c.is_ascii_digit()).unwrap_or(s.len());
+    let end = s.find(|c: char| !c.is_ascii_digit()).unwrap_or(s.len());
     match s[..end].parse() {
         Ok(value) => Some((value, &s[end..])),
         Err(_) => None,
