@@ -4,7 +4,7 @@ use crate::{
 };
 
 pub fn string(target: &'static str) -> impl Parser<&str> {
-    parser_closure(move |input| input.strip_prefix(target).map_or(None, |s| Some((target, s))))
+    parser_closure(move |input| input.strip_prefix(target).and_then(|s| Some((target, s))))
 }
 
 #[test]
