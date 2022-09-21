@@ -6,14 +6,11 @@ pub fn digits(s: &str) -> Option<(u64, &str)> {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn parse() {
-        assert_eq!(super::digits("825kaji"), Some((825, "kaji")));
-        assert_eq!(super::digits("0825kaji"), Some((825, "kaji")));
-        assert_eq!(super::digits("0000kaji"), Some((00, "kaji")));
-        assert_eq!(super::digits("kaji"), None);
-        assert_eq!(super::digits("=kaji"), None);
-    }
+#[test]
+fn parse() {
+    assert_eq!(digits("825kaji"), Some((825, "kaji")));
+    assert_eq!(digits("0825kaji"), Some((825, "kaji")));
+    assert_eq!(digits("0000kaji"), Some((00, "kaji")));
+    assert_eq!(digits("kaji"), None);
+    assert_eq!(digits("=kaji"), None);
 }

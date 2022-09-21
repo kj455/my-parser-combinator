@@ -10,13 +10,10 @@ pub fn char(c: char) -> impl Parser<()> {
     })
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn parse() {
-        assert_eq!(super::char('a')("abc"), Some(((), "bc")));
-        assert_eq!(super::char('a')("aabc"), Some(((), "abc")));
-        assert_eq!(super::char('a')("bcd"), None);
-        assert_eq!(super::char('a')(""), None);
-    }
+#[test]
+fn parse() {
+    assert_eq!(char('a')("abc"), Some(((), "bc")));
+    assert_eq!(char('a')("aabc"), Some(((), "abc")));
+    assert_eq!(char('a')("bcd"), None);
+    assert_eq!(char('a')(""), None);
 }
