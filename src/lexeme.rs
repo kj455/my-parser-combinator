@@ -10,8 +10,8 @@ pub fn lexeme<T>(parser: impl Parser<T>) -> impl Parser<T> {
 
 #[test]
 fn parse() {
-    assert_eq!(lexeme(char('a'))("   abc"), Some(((), "bc")));
-    assert_eq!(lexeme(char('a'))("abc"), Some(((), "bc")));
+    assert_eq!(lexeme(char('a'))("   abc"), Some(('a', "bc")));
+    assert_eq!(lexeme(char('a'))("abc"), Some(('a', "bc")));
     assert_eq!(lexeme(char('a'))("  bcd"), None);
     assert_eq!(lexeme(digits)("123abc"), Some((123, "abc")));
     assert_eq!(lexeme(digits)("   123abc"), Some((123, "abc")));
