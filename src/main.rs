@@ -7,6 +7,7 @@ mod map;
 mod or;
 mod string;
 mod rep;
+mod split;
 
 fn main() {
     println!("Hello, world!");
