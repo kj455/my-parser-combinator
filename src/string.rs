@@ -1,6 +1,5 @@
 use crate::{
-    helper::{parser_closure, Parser},
-    lexeme::lexeme,
+    helper::{parser_closure, Parser}, lexeme::lexeme,
 };
 
 pub fn string(target: &'static str) -> impl Parser<&str> {
