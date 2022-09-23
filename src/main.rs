@@ -8,6 +8,7 @@ mod or;
 mod string;
 mod rep;
 mod split;
+mod regex;
 
 fn main() {
     println!("Hello, world!");
