@@ -50,3 +50,26 @@ fn test_cat_multiple() {
     assert_eq!(cat_multiple(vec![char('k'), char('a'), char('j'), char('i')])("kaibuki"), None);
     assert_eq!(cat_multiple(vec![char('k'), char('a'), char('j'), char('i')])(""), None);
 }
+
+#[macro_export]
+macro_rules! cat {
+    ($parser0:expr, $($parser:expr),*) => {{
+        let p = $parser0;
+        $(
+            let p = $crate::cat::cat(p, $parser);
+        )*
+        p
+    }};
+}
+
+#[test]
+fn test_cat_macro() {
+    // スペース区切りで数値をちょうど3つ受け付けるパーサー
+    let parser = cat![
+        lexeme(digits),
+        lexeme(digits),
+        lexeme(digits)
+    ];
+    assert_eq!(parser("10 20 30"), Some((((10, 20), 30), "")));
+    assert_eq!(parser("10 20 AA"), None);
+}

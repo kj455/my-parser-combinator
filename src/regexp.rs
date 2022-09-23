@@ -19,3 +19,13 @@ fn test_regex() {
     assert_eq!(parser("x_1=0"), Some(("x_1".to_owned(), "=0")));
     assert_eq!(parser("0_1=0"), None);
 }
+
+#[macro_export]
+macro_rules! regex {
+    ($pattern:expr, $f:expr) => {{
+        use once_cell::sync::Lazy;
+        use regex::Regex;
+        static RE: Lazy<Regex> = Lazy::new(|| Regex::new($pattern).unwrap());
+        $crate::regexp::regex(&RE, $f)
+    }};
+}
